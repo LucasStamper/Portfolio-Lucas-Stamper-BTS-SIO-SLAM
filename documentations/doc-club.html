@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club & Compétitions</title>
+    <link rel="stylesheet" href="../style.css">
+    <script defer src="../script.js"></script>
+</head>
+
+<body>
+    <section class="page-content">
+
+        <div class="back-button-container">
+            <a href="javascript:history.back()" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+        <h1 class="scroll-fade">Club & Compétitions</h1>
+        <p class="scroll-fade">Documentation technique du projet annuel - Option SLAM</p>
+
+        <div class="doc-section scroll-fade">
+            <h2>1. Présentation du Projet</h2>
+            <p>
+                Le projet <strong>Club & Compétitions</strong> consiste en la réalisation d'une solution complète (Web
+                et
+                Mobile) dédiée à l'organisation, la gestion et le suivi de tournois sportifs.
+                L'objectif est d'automatiser les tâches administratives complexes telles que la génération de
+                calendriers de
+                matchs et le calcul des classements en temps réel.
+            </p>
+
+            <div class="doc-image-wrapper">
+                <i class="fas fa-laptop-code"></i>
+                <img src="../assets/dashboard-admin.png" alt="Dashboard Administrateur Club & Compétitions">
+            </div>
+        </div>
+
+        <div class="doc-section scroll-fade">
+            <h2>2. Analyse et Conception (SLAM)</h2>
+            <p>
+                La phase de conception a été structurée autour de la méthode UML pour garantir une base de données
+                cohérente
+                et évolutive.
+                Le défi technique majeur résidait dans la gestion des relations entre les clubs, les différentes
+                éditions
+                des compétitions et les résultats des matchs.
+            </p>
+
+            <h3>Modélisation UML</h3>
+            <ul>
+                <li><strong>Cas d'utilisation :</strong> Gestion des rôles (Admin Club vs Participant).</li>
+                <li><strong>Diagramme de classes :</strong> Modélisation des entités (Tournoi, Match, Equipe,
+                    Classement).
+                </li>
+            </ul>
+
+            <div class="doc-image-wrapper">
+                <i class="fas fa-project-diagram"></i>
+                <p>[Zone conseillée pour ton Diagramme de Classes UML]</p>
+            </div>
+        </div>
+
+        <div class="doc-section scroll-fade">
+            <h2>3. Architecture Technique (Stack)</h2>
+            <p>Pour assurer une synchronisation fluide entre la gestion web et la consultation mobile, j'ai opté pour
+                une
+                architecture basée sur une API REST centrale.</p>
+
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Couche</th>
+                        <th>Technologie</th>
+                        <th>Rôle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend / API</strong></td>
+                        <td>Node.js / Express (ou PHP)</td>
+                        <td>Logique métier et service des données JSON.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend Web</strong></td>
+                        <td>React.js (ou HTML/CSS)</td>
+                        <td>Interface de gestion pour les organisateurs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application Mobile</strong></td>
+                        <td>Flutter / React Native</td>
+                        <td>Consultation des scores et notifications.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Base de données</strong></td>
+                        <td>MySQL / PostgreSQL</td>
+                        <td>Stockage persistant des données structurées.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-section scroll-fade">
+            <h2>4. Implémentation : Logique de Classement</h2>
+            <p>Conformément aux exigences de l'option SLAM, le code suit une structure détaillée et commentée pour
+                assurer
+                une maintenance optimale par d'autres développeurs.</p>
+
+            <h3>Extrait : Calcul automatique des points d'un match</h3>
+            <div class="code-container">
+                <pre><code>
+/**
+ * Calcule et met à jour les points suite à la saisie d'un score.
+ * Les codes sont détaillés pour une lisibilité maximale.
+ */
+function processMatchResult(matchId, scoreA, scoreB) {
+    const WIN_POINTS = 3;
+    const DRAW_POINTS = 1;
+    const LOSS_POINTS = 0;
+
+    const currentMatch = database.getMatch(matchId);
+    
+    // Comparaison des scores pour déterminer l'issue
+    if (scoreA > scoreB) {
+        // Victoire de l'équipe domicile
+        updateTeamPoints(currentMatch.teamA_id, WIN_POINTS);
+        updateTeamPoints(currentMatch.teamB_id, LOSS_POINTS);
+    } 
+    else if (scoreA < scoreB) {
+        // Victoire de l'équipe visiteur
+        updateTeamPoints(currentMatch.teamA_id, LOSS_POINTS);
+        updateTeamPoints(currentMatch.teamB_id, WIN_POINTS);
+    } 
+    else {
+        // Match nul
+        updateTeamPoints(currentMatch.teamA_id, DRAW_POINTS);
+        updateTeamPoints(currentMatch.teamB_id, DRAW_POINTS);
+    }
+}
+</code></pre>
+            </div>
+
+            <div class="doc-image-wrapper">
+                <i class="fas fa-mobile-alt"></i>
+                <p>[Zone conseillée pour une capture d'écran de l'affichage du classement sur Mobile]</p>
+            </div>
+        </div>
+
+        <div class="doc-section scroll-fade">
+            <h2>5. Compétences Validées (E4/E5)</h2>
+            <ul>
+                <li><strong>Gérer le patrimoine informatique :</strong> Versionnage avec Git et GitHub.</li>
+                <li><strong>Développer la présence en ligne :</strong> Création d'une application web dynamique.</li>
+                <li><strong>Répondre aux besoins des utilisateurs :</strong> Interface mobile fluide et accessible.</li>
+            </ul>
+        </div>
+
+    </section>
+</body>
+
+</html>
